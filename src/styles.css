@@ -1,0 +1,23 @@
+body {
+  background-color: rgb(165, 161, 161);
+  color: rgb(66, 61, 61);
+}
+
+.header {
+  text-align: center;
+}
+
+.table, td, tr {
+  color: rgb(73, 25, 25);
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.currentCourse{
+  font-size: 2rem;
+  box-shadow: 10px 5px 5px red;
+}
+select{
+  width: 300px;
+}
+

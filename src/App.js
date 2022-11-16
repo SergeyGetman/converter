@@ -1,6 +1,6 @@
 import { dataTranslate } from "./localization.ts"
 import CurretnTab from "./CurentTab.tsx"
-import { options } from "./mock.ts";
+import { options, curentUAN } from "./mock.ts";
 import style from "./styles.css"
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -90,7 +90,7 @@ function App() {
       <div className={style.table}>
         <h1>{dataTranslate.nameList}</h1>
         <select value={curent} onChange={(e) => setCurrent(e.target.value)}>
-          {options.map(e => {
+          {curentUAN.map(e => {
             return (
               <option value={e.value}>{e.label}</option>
             )
@@ -112,7 +112,7 @@ function App() {
         {`you choice is ${curentSecond}`}
       </div>
       <input type="input" placeholder="choise your currency" value={currensy} onChange={changeInputvalue}></input>
-      <CurretnTab className={style.table} amount={currensy} />
+      <CurretnTab className={style.table} amount={currensy} state={state} />
 
     </div>
   );

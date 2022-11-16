@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-
 interface Prop {
     className: string;
     amount: number;
+    state: any;
 }
   
 
-function CurretnTab ({className, amount = 0} : Prop) {
-    const course = 36.4;
-    amount += 1;
-    amount *= course;
+function CurretnTab ({className, amount = 0, state} : Prop) {
+  
+    const {rates} = state;
+    let curentUAN = rates?.UAH
+    amount = amount * curentUAN;
     
     return (
 

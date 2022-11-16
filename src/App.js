@@ -34,8 +34,7 @@ function App() {
   }
 
   const handleChangeSecond = (e) => {
-    console.log("Fruit Selected!!", e);
-    if (e.target.value === "UAN" ||
+    if (e?.target?.value === "UAN" ||
       e.target.value === "EUR" ||
       e.target.value === "USD") {
       e.target.disabled = true;
@@ -54,17 +53,19 @@ function App() {
   }
 
   const objFunctionCalc = {
-    a: handleChangeSecond()
+    a: handleChangeSecond
   }
 
   function totalCurrent(e) {
 
-    const curentEuroCourse = state?.rates?.EUR ? 37.5 : ""
+    const curentEuroCourse = state?.rates?.EUR ? 37.5 : "";
     const curentUSDCourse = state?.rates?.USD ? 36.5 : "";
-    const curentUAHCourse = state?.rates?.UAH ? "37.5" : 1
+    const curentUAHCourse = state?.rates?.UAH ? 37.5 : "";
+
+    const currentState = e?.target?.value;
 
 
-    switch (e.target.value) {
+    switch (currentState) {
       case "UAH":
         currensy = currensy * curentUAHCourse;
         break;
@@ -76,7 +77,7 @@ function App() {
         break;
 
       default:
-        alert("You must be entered some number")
+        return
     }
   }
 

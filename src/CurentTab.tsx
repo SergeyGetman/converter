@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 interface Prop {
     className: string;
     amount: number;
@@ -5,6 +7,9 @@ interface Prop {
   
 
 function CurretnTab ({className, amount = 0} : Prop) {
+    const course = 36.4;
+    amount += 1;
+    amount *= course;
     
     return (
 

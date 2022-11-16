@@ -9,10 +9,9 @@ import axios from 'axios';
 function App() {
 
   const [state, setState] = useState({});
-  const [stateCalcFirst, setStateCalcFirst] = useState({});
-  const [stateCalcSecond, setStateCalcSecond] = useState({});
   const [curent, setCurrent] = useState('');
   const [curentSecond, setCurrentSecond] = useState('');
+  const [currensy, setCurrensy] = useState("");
 
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -35,22 +34,53 @@ function App() {
   }
 
   const handleChangeSecond = (e) => {
-    console.log("Fruit Selected!!", e.target.value);
+    console.log("Fruit Selected!!", e);
+    if (e.target.value === "UAN" ||
+      e.target.value === "EUR" ||
+      e.target.value === "USD") {
+      e.target.disabled = true;
+    }
     setCurrentSecond(e.target.value);
   }
 
-  const handleChangeFirst = (e) => {
-    console.log("Fruit Selected!!", e.target.value);
-    setStateCalcSecond({ stateCalcSecond: e.target.value });
+
+  const changeInputvalue = (e) => {
+    const currentValue = e.target.value;
+    if (!currentValue) {
+      return null;
+
+    }
+    setCurrensy(e.target.value);
   }
 
-  const totalCurrentUAHonEUR = () => {
-  //   const oneEURO = state?.rates.EUR
-  // console.log("this is one EURO", state?.rates?.EUR)
+  const objFunctionCalc = {
+    a: handleChangeSecond()
   }
-  totalCurrentUAHonEUR();
 
- 
+  function totalCurrent(e) {
+
+    const curentEuroCourse = state?.rates?.EUR ? 37.5 : ""
+    const curentUSDCourse = state?.rates?.USD ? 36.5 : "";
+    const curentUAHCourse = state?.rates?.UAH ? "37.5" : 1
+
+
+    switch (e.target.value) {
+      case "UAH":
+        currensy = currensy * curentUAHCourse;
+        break;
+      case "EUR":
+        currensy = currensy * curentEuroCourse;
+        break;
+      case "USD":
+        currensy = currensy * curentUSDCourse
+        break;
+
+      default:
+        alert("You must be entered some number")
+    }
+  }
+
+  totalCurrent(objFunctionCalc.a);
 
 
   return (
@@ -60,28 +90,28 @@ function App() {
         <h1>{dataTranslate.nameList}</h1>
         <select value={curent} onChange={(e) => setCurrent(e.target.value)}>
           {options.map(e => {
-            return(
+            return (
               <option value={e.value}>{e.label}</option>
             )
           })}
         </select>
         <div>
           {`you choice is ${curent}`}
-      </div>
+        </div>
 
-        <select value={curentSecond} onChange={(e) => setCurrentSecond(e.target.value)} >
+        <select value={curentSecond} onChange={handleChangeSecond} >
           {options.map(e => {
-            return(
+            return (
               <option value={e.value}>{e.label}</option>
             )
           })}
         </select>
       </div>
       <div>
-          {`you choice is ${curentSecond}`}
+        {`you choice is ${curentSecond}`}
       </div>
-
-      <CurretnTab className={style.table} />
+      <input type="input" placeholder="choise your currency" value={currensy} onChange={changeInputvalue}></input>
+      <CurretnTab className={style.table} amount={currensy} />
 
     </div>
   );

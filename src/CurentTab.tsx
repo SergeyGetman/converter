@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface Prop {
     className: string;
     amount: number;
@@ -7,17 +5,6 @@ interface Prop {
   
 
 function CurretnTab ({className, amount = 0} : Prop) {
-    const [currensy, setCurrensy] = useState("");
-
-    const handleChange = (e) => {
-        setCurrensy(e.target.value)
-      }
-
-      const amountEuroInUan = () => {
-        console.log();
-        
-      }
-    
     
     return (
 
@@ -25,13 +12,10 @@ function CurretnTab ({className, amount = 0} : Prop) {
             <table>
                 <td>
                     {`amount ${amount}`}
-                    <tr>{currensy}</tr>
+                    <tr></tr>
                     <hr />
                 </td>    
-            </table>
-
-            <input type="input" placeholder="choise your currency" value={currensy} onChange={handleChange}></input>
-        
+            </table>        
         </div>
     )
 
